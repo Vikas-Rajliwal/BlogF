@@ -13,7 +13,7 @@
 //       setIsAuthenticated(true); // true if token exists
 //     }
 //   }, []);
-  
+
 //   const UserName = Cookies.get("userName");
 //   const id = Cookies.get("Id");
 //   console.log("id:", id);
@@ -69,7 +69,6 @@
 
 // export default NavBar;
 
-
 import "./NavBar.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -80,10 +79,10 @@ function NavBar() {
   const [userName, setUserName] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const token = Cookies.get("token");
+  const token = Cookies.get("token");
     const storedUserName = Cookies.get("userName");
+  useEffect(() => {
+  
 
     if (token) {
       setIsAuthenticated(true);
@@ -111,7 +110,9 @@ function NavBar() {
   return (
     <nav className="navbar">
       <div className="navbar__logo">
-        <Link to="/" onClick={handleLinkClick}>Blog Nest</Link>
+        <Link to="/" onClick={handleLinkClick}>
+          Blog Nest
+        </Link>
       </div>
 
       {/* Hamburger icon */}
@@ -127,16 +128,22 @@ function NavBar() {
       {/* Navbar links with toggle class */}
       <ul className={`navbar__links ${menuOpen ? "active" : ""}`}>
         <li>
-          <Link to="/" onClick={handleLinkClick}>Home</Link>
+          <Link to="/" onClick={handleLinkClick}>
+            Home
+          </Link>
         </li>
 
         {isAuthenticated ? (
           <>
             <li>
-              <Link to="/add-blog" onClick={handleLinkClick}>Add Blog</Link>
+              <Link to="/add-blog" onClick={handleLinkClick}>
+                Add Blog
+              </Link>
             </li>
             <li>
-              <Link to="/MyProfile" onClick={handleLinkClick}>{userName || "Profile"}</Link>
+              <Link to="/MyProfile" onClick={handleLinkClick}>
+                {userName || "Profile"}
+              </Link>
             </li>
             <li>
               <button onClick={handleLogout} className="logout-btn">
@@ -147,10 +154,14 @@ function NavBar() {
         ) : (
           <>
             <li>
-              <Link to="/signup" onClick={handleLinkClick}>Signup</Link>
+              <Link to="/signup" onClick={handleLinkClick}>
+                Signup
+              </Link>
             </li>
             <li>
-              <Link to="/login" onClick={handleLinkClick}>Log In</Link>
+              <Link to="/login" onClick={handleLinkClick}>
+                Log In
+              </Link>
             </li>
           </>
         )}
