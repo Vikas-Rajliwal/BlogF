@@ -91,7 +91,7 @@ function NavBar() {
       setIsAuthenticated(false);
       setUserName("");
     }
-  }, []);
+  });
 
   const handleLogout = () => {
     Cookies.remove("token");
