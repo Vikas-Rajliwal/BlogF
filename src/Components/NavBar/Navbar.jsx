@@ -73,24 +73,26 @@ import "./NavBar.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
-
+import { useLocation } from "react-router-dom"; // Import useLocation for location tracking
 function NavBar() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userName, setUserName] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
+const location = useLocation();
 
-  useEffect(() => {
-    const token = Cookies.get("token");
-    const storedUserName = Cookies.get("userName");
-    if (token) {
-      setIsAuthenticated(true);
-      setUserName(storedUserName || "");
-    } else {
-      setIsAuthenticated(false);
-      setUserName("");
-    }
-  });
+useEffect(() => {
+  const token = Cookies.get("token");
+  const storedUserName = Cookies.get("userName");
+
+  if (token) {
+    setIsAuthenticated(true);
+    setUserName(storedUserName || "");
+  } else {
+    setIsAuthenticated(false);
+    setUserName("");
+  }
+}, [location]);
 
   const handleLogout = () => {
     Cookies.remove("token");
