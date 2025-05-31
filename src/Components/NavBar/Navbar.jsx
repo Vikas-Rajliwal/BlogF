@@ -79,11 +79,10 @@ function NavBar() {
   const [userName, setUserName] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
-  const token = Cookies.get("token");
-    const storedUserName = Cookies.get("userName");
-  useEffect(() => {
-  
 
+  useEffect(() => {
+    const token = Cookies.get("token");
+    const storedUserName = Cookies.get("userName");
     if (token) {
       setIsAuthenticated(true);
       setUserName(storedUserName || "");
