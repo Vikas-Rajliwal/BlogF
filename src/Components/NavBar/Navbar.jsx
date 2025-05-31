@@ -98,7 +98,7 @@ function NavBar() {
     setIsAuthenticated(false);
     setUserName("");
     setMenuOpen(false); // close menu on logout
-    navigate("/");
+    navigate("/",{ replace: true }); // Redirect to home
   };
 
   // Close menu when clicking a link (optional)
